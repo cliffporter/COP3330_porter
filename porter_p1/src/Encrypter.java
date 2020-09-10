@@ -4,7 +4,7 @@ public class Encrypter
     //Instance vars
     private int[] nums;
 
-    //Constructor
+    //Constructors
     public Encrypter()
     {
         nums = new int[4];
@@ -42,10 +42,8 @@ public class Encrypter
     //Encryption functions
     public String encrypt()
     {
-        //Preform Mod function
         modNums();
 
-        //Preform Swap function
         swapPositions();
 
         return this.toString();
@@ -54,11 +52,7 @@ public class Encrypter
     {
         this.setString(str);
 
-        modNums();
-
-        swapPositions();
-
-        return this.toString();
+        return this.encrypt();
     }
 
     private void modNums()

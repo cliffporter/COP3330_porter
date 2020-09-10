@@ -3,7 +3,11 @@ public class Decrypter
     //Instance vars
     private int[] nums;
 
-    //Constructor
+    //Constructors
+    public Decrypter()
+    {
+        nums = new int[4];
+    }
     public Decrypter(String encrypted)
     {
         //Convert string to an int array, store in the instance var nums
@@ -25,16 +29,31 @@ public class Decrypter
         return rtrn;
     }
 
+    public void setString(String encrypted)
+    {
+        nums = new int[encrypted.length()];
+        for (int i = 0; i < encrypted.length(); i++)
+        {
+            nums[i] = Character.getNumericValue(encrypted.charAt(i));
+        }
+    }
+
     //Encryption functions
     public String decrypt()
     {
-        //Un-swap number positions
+        //'Un-swaps' Positions
         swapPositions();
 
-        //Preform reverseMod function
         unModNums();
 
         return this.toString();
+    }
+
+    public String decrypt(String str)
+    {
+        this.setString(str);
+
+        return this.decrypt();
     }
 
     private void unModNums()
