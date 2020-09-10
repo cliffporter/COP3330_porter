@@ -8,6 +8,7 @@ class EncrypterTest
     public void testEncrypterDefaultConstructor()
     {
         Encrypter e=new Encrypter();
+
         assertEquals("7777", e.encrypt());
         e.setString("1234");
         assertEquals("0189",e.encrypt());
@@ -18,6 +19,7 @@ class EncrypterTest
     public void testEncrypterPeramConstructor()
     {
         Encrypter e=new Encrypter("1234");
+
         assertEquals("0189",e.encrypt());
     }
 
@@ -25,6 +27,7 @@ class EncrypterTest
     public void testEncrypterStringEncryptMethod()
     {
         Encrypter e=new Encrypter();
+
         assertEquals("0189", e.encrypt("1234"));
         assertEquals("5678", e.encrypt("0189"));
         assertEquals("5019", e.encrypt("4283"));
