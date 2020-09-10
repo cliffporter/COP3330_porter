@@ -6,6 +6,7 @@ public class Encrypter
     //Constructor
     public Encrypter(String unEncrypted)
     {
+        //Convert string to an int array, store in the instance var nums
         nums=new int[unEncrypted.length()];
         for(int i=0; i<unEncrypted.length(); i++)
         {
@@ -16,6 +17,7 @@ public class Encrypter
     //Gets and Sets
     public String toString()
     {
+        //Create String from nums
         String rtrn="";
         for(int i:nums)
             rtrn += i;
@@ -37,7 +39,7 @@ public class Encrypter
 
     private void modNums()
     {
-        //Each num +7 mod 10
+        //Each num +7, mod 10
         for(int i=0; i<nums.length; i++)
         {
             nums[i]=((nums[i]+7)%10);

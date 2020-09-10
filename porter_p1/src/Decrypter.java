@@ -4,17 +4,20 @@ public class Decrypter
     private int[] nums;
 
     //Constructor
-    public Decrypter(String ecncypted)
+    public Decrypter(String encrypted)
     {
-        nums=new int[ecncypted.length()];
-        for(int i=0; i<ecncypted.length(); i++)
+        //Convert string to an int array, store in the instance var nums
+        nums=new int[encrypted.length()];
+        for(int i=0; i<encrypted.length(); i++)
         {
-            nums[i]=Character.getNumericValue(ecncypted.charAt(i));
+            nums[i]=Character.getNumericValue(encrypted.charAt(i));
         }
     }
+
     //Gets and Sets
     public String toString()
     {
+        //Create String from nums
         String rtrn="";
         for(int i:nums)
             rtrn += i;
@@ -25,8 +28,8 @@ public class Decrypter
     //Encryption functions
     public String decrypt()
     {
-        //Preform unSwap function
-        unSwapPositions();
+        //Un-swap number positions
+        swapPositions();
 
         //Preform reverseMod function
         unModNums();
@@ -36,14 +39,14 @@ public class Decrypter
 
     private void unModNums()
     {
-        //Each num +10 -7 mod 10
+        //Each num +10, -7, mod 10
         for(int i=0; i<nums.length; i++)
         {
             nums[i]=((nums[i]+3)%10);
         }
     }
 
-    private void unSwapPositions()
+    private void swapPositions()
     {
         //Swap 1 (pos 1 with pos 3)
         int temp=nums[0];
