@@ -56,6 +56,7 @@ public class Decrypter
         return this.decrypt();
     }
 
+
     private void unModNums()
     {
         //Each num +10, -7, mod 10

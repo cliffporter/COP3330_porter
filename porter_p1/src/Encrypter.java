@@ -48,12 +48,14 @@ public class Encrypter
 
         return this.toString();
     }
+
     public String encrypt(String str)
     {
         this.setString(str);
 
         return this.encrypt();
     }
+
 
     private void modNums()
     {
