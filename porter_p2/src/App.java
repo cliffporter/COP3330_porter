@@ -19,6 +19,9 @@ public class App
         displayBmiStatistics(bmiData);
 
     }
+
+
+    //Input handling
     static public boolean moreInput()
     {
         Scanner scan= new Scanner(System.in);
@@ -56,14 +59,23 @@ public class App
         return weightInp;
     }
 
+    //Printer methods
     static public void displayBmiInfo(BodyMassIndex bmi)
     {
+        System.out.println();
+        System.out.println("BMI: " + bmi.getBmi());
+        System.out.println("This person is " + bmi.getCategory());
+
+    }
+    static public void displayBmiStatistics(ArrayList<BodyMassIndex> bmiList)
+    {
+        double sum=0;
+        for(BodyMassIndex b : bmiList)
+        {
+            sum+=b.getBmi();
+        }
 
         System.out.println();
-        System.out.println("BMI: "+);
-    }
-    static public void displayBmiStatistics(ArrayList bmiList)
-    {
-
+        System.out.println("The average BMI is: " + sum);
     }
 }

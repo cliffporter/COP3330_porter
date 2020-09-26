@@ -40,9 +40,8 @@ class BodyMassIndexTest
         BodyMassIndex b=new BodyMassIndex();
         App.displayBmiInfo(b);
         assertEquals(System.getProperty("line.separator")
-                            +"The height is: 66.125" + System.getProperty("line.separator")
-                            + "The weight is: 184.15"+ System.getProperty("line.separator")
-                            + "BMI: 29.61" + System.getProperty("line.separator"), os.toString());
+                            +"BMI: 29.6" + System.getProperty("line.separator")
+                            + "This person is Overweight"+ System.getProperty("line.separator"), os.toString());
     }
 
 }
