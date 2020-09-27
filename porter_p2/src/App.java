@@ -25,10 +25,18 @@ public class App
     static public boolean moreInput()
     {
         Scanner scan= new Scanner(System.in);
-        System.out.print("Do you wish to enter more input? [Y/N]: ");
-        String decisionInp=scan.nextLine();
 
-        return decisionInp.equalsIgnoreCase("Y");
+        while(true) {
+            System.out.print("Do you wish to enter more input? [Y/N]: ");
+            String decisionInp = scan.nextLine();
+
+            if(decisionInp.equalsIgnoreCase("Y"))
+                return true;
+            else if(decisionInp.equalsIgnoreCase("N"))
+                return false;
+            else
+                System.out.println("Please enter Y or N");
+        }
     }
     static public double getUserHeight()
     {
@@ -41,7 +49,6 @@ public class App
             heightInp = scan.nextDouble();
             //scan.nextLine();
         }
-        //scan.close();
         return heightInp;
     }
     static public double getUserWeight()
@@ -55,7 +62,6 @@ public class App
             weightInp = scan.nextDouble();
             //scan.nextLine();
         }
-        //scan.close();
         return weightInp;
     }
 
@@ -72,10 +78,10 @@ public class App
         double sum=0;
         for(BodyMassIndex b : bmiList)
         {
-            sum+=b.getBmi();
+            sum+=Math.abs(b.getBmi());
         }
 
         System.out.println();
-        System.out.println("The average BMI is: " + sum);
+        System.out.println("The average BMI is: " + sum/bmiList.size());
     }
 }

@@ -1,52 +1,23 @@
-
 import org.junit.jupiter.api.Test;
-
-
-import java.io.ByteArrayOutputStream;
-import java.io.OutputStream;
-import java.io.PrintStream;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class BodyMassIndexTest
 {
-    //Remove before submitting
     @Test
-    public void sandbox()
+    public  void bodyMassSetsAndGets()
     {
-        OutputStream os = new ByteArrayOutputStream();
-        PrintStream ps = new PrintStream(os);
-        System.setOut(ps);
-
-
-        //Test console output
-        System.out.print("Hello World");
-        assertEquals("Hello World", os.toString());
-
-
-        //Resume normal output
-        PrintStream originalOut = System.out;
-        System.setOut(originalOut);
-    }
-
-    //App class tests - move to separate test file
-    @Test
-    public void appDisplayBmiInfoTest()
-    {
-        //Setup
-        OutputStream os = new ByteArrayOutputStream();
-        PrintStream ps = new PrintStream(os);
-        System.setOut(ps);
-
-        //Test default constructor
         BodyMassIndex b=new BodyMassIndex();
-        App.displayBmiInfo(b);
-        assertEquals(System.getProperty("line.separator")
-                            +"BMI: 29.6" + System.getProperty("line.separator")
-                            + "This person is Overweight"+ System.getProperty("line.separator"), os.toString());
-    }
+        assertEquals(66.125,b.getHeight());
+        assertEquals(184.15,b.getWeight());
 
-    //BodyMassIndex tests
+        b.updateValues(74,150);
+        assertEquals(74,b.getHeight());
+        assertEquals(150,b.getWeight());
+
+        b.updateValues(65,-115);
+        assertEquals(65,b.getHeight());
+        assertEquals(-115,b.getWeight());
+    }
     @Test
     public void bodyMassBMIObjectValueTest()
     {

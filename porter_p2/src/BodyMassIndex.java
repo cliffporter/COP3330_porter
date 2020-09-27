@@ -35,7 +35,7 @@ public class BodyMassIndex
     {
         return bmi;
     }
-
+    //Set method for both height and weight
     public void updateValues(double heightInInches, double weightInLbs)
     {
         height=heightInInches;
