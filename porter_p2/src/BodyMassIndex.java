@@ -14,8 +14,9 @@ public class BodyMassIndex
 
     public BodyMassIndex(double heightInInches, double weightInLbs)
     {
-        height=heightInInches;
-        weight=weightInLbs;
+        height = heightInInches;
+        weight = weightInLbs;
+
         calculateBmi();
     }
 
@@ -35,13 +36,11 @@ public class BodyMassIndex
         return bmi;
     }
 
-    public void setHeight(double heightInInches)
+    public void updateValues(double heightInInches, double weightInLbs)
     {
         height=heightInInches;
-    }
-    public void setWeight(double weightInLbs)
-    {
         weight=weightInLbs;
+        calculateBmi();
     }
 
     //-----------------------------------------------------------------------------
@@ -64,7 +63,15 @@ public class BodyMassIndex
     //Private helper methods
     private void calculateBmi()
     {
-        bmi=Math.round((703*weight/(Math.pow(height, 2)))*10.0)/10.0;
+        //Avoid div by 0, overflow etc
+        if(height==0.0||weight==0.0)
+        {
+            bmi = 0;
+        }
+        else
+        {
+            bmi = Math.round((703 * weight / (Math.pow(height, 2))) * 10.0) / 10.0;
+        }
     }
 
     //-----------------------------------------------------------------------------
@@ -72,7 +79,15 @@ public class BodyMassIndex
     //Static BMI methods
     static public double calculateBmi(double heightInInches, double weightInLbs)
     {
-      return Math.round((703*weightInLbs/(Math.pow(heightInInches, 2)))*10.0)/10.0;
+        //Avoid div by 0, overflow etc
+        if(heightInInches==0.0||weightInLbs==0.0)
+        {
+            return 0.0;
+        }
+        else
+        {
+            return Math.round((703*weightInLbs/(Math.pow(heightInInches, 2)))*10.0)/10.0;
+        }
     }
 
     static public String calculateBmiCategory(double heightInInches, double weightInLbs)
