@@ -43,7 +43,7 @@ public class App
         Scanner scan= new Scanner(System.in);
         double heightInp=-1;
 
-        while(heightInp<0)
+        while(heightInp<=0)
         {
             System.out.print("Please enter the height for this entry in inches [positive double]: ");
             heightInp = scan.nextDouble();
@@ -56,7 +56,7 @@ public class App
         Scanner scan= new Scanner(System.in);
         double weightInp=-1;
 
-        while(weightInp<0)
+        while(weightInp<=0)
         {
             System.out.print("Please enter the weight for this entry in pounds [positive double]: ");
             weightInp = scan.nextDouble();
