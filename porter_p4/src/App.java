@@ -4,48 +4,52 @@ public class App {
     //TaskList?
     public static void main(String[] args)
     {
-        //Display main menu
-            //Get user input
-            //if create new list
-                //Display success message
-                //initialize a taskList
-                //Move to operations block
-            //if load list
-                //Prompt file name
-                //Initialize TaskList w/ file
-
-
-            //Call display operations menu
+        //While True
+            //Display main menu
                 //Get user input
-                //Switch case - operations
-                        //*All editing done through TaskList
-                    //View      - TaskList.display
-                    //Add       - Call prompt new taskItem
-                                    //Prompt for title, desc, due date
-                                    //Send data to addTaskItem in TaskList
-                    //Edit      - Call prompt edit taskItem
-                                    //Display items
-                                    //Promp for NEW title, desc, due date
-                                    //Send data to editTaskItem in TaskList
-                    //Remove    - TaskList.remove
-                                    //Display items
-                                    //Prompt for value to remove
-                                    //Send index to removeTaskItem
-                    //Mark comp - TaskList.mark(index)
-                                    //Display items
-                                    //Promp for index
-                    //Un-mark   - TaskList.unMark(index)
-                                    //Display items
-                                    //Promp for index
-                    //Save      - TaskList.saveToFile
-                                    //Prompt for file name
-                    //Exit      - return / exit method
-                                    //Promp for confirmation (Unsaved data will be lost) <Bonus feature: don't ask if nothing to save>
+                //if create new list
+                    //Display success message
+                    //initialize a taskList
+                    //Move to operations block
+                //if load list
+                    //Prompt file name
+                    //Initialize TaskList w/ file
 
-            //if 3, break
-
+                //displayOperationsMenu()
         //^^Loop back to main menu
 
+    }
+    private void displayOperationsMenu()
+    {
+        //while true
+            //Get user int
+            //Switch case - operations
+                    //*All editing done through TaskList
+                //View      - TaskList.display
+                //Add       - Call prompt new taskItem
+                                //Prompt for title, desc, due date
+                                //Check validation + re-prompt if needed
+                                //Send data to addTaskItem in TaskList
+                //Edit      - Call prompt edit taskItem
+                                //Display items
+                                //Promp for NEW title, desc, due date
+                                 //Send data to editTaskItem in TaskList
+                //Remove    - TaskList.remove
+                                //Display items
+                                //Prompt for value to remove
+                                //Send index to removeTaskItem
+                //Mark comp - TaskList.mark(index)
+                                //Display items
+                                //Promp for index
+                //Un-mark   - TaskList.unMark(index)
+                                //Display items
+                                //Promp for index
+                //Save      - TaskList.saveToFile
+                                //Prompt for file name
+                //Exit      - return / exit method
+                                //Promp for confirmation (Unsaved data will be lost) <Bonus feature: don't ask if nothing to save>
+
+                //if 3, break
     }
     private String promptUserForString(String prompt)
     {
@@ -61,6 +65,23 @@ public class App {
         //convert to int
         //Re-prompt if X<1, x>8
         return Integer.MIN_VALUE;
+    }
+
+    private boolean validateTaskTitle(String s)
+    {
+        //length>0
+        return false;
+    }
+    private boolean validateTaskDate(String s)
+    {
+        //correct format YYYY-MM-DD
+        //MM<=12, DD<=31
+        //<Bonus feature> 28/29-[2] 30-[4,6  9,11] 31-[1,3,5,7  8,10,12]
+        return false;
+    }
+    private boolean validateTaskDescription(String s)
+    {
+        return false;
     }
 }
 /**
