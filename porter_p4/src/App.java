@@ -67,22 +67,6 @@ public class App {
         return Integer.MIN_VALUE;
     }
 
-    private boolean validateTaskTitle(String s)
-    {
-        //length>0
-        return false;
-    }
-    private boolean validateTaskDate(String s)
-    {
-        //correct format YYYY-MM-DD
-        //MM<=12, DD<=31
-        //<Bonus feature> 28/29-[2] 30-[4,6  9,11] 31-[1,3,5,7  8,10,12]
-        return false;
-    }
-    private boolean validateTaskDescription(String s)
-    {
-        return false;
-    }
 }
 /**
     Main Menu
