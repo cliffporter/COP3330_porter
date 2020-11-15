@@ -7,7 +7,6 @@ import java.util.Scanner;
 public class TaskList
 {
     private ArrayList<TaskItem> taskArr;
-    //
 
 
     public TaskList()
@@ -19,20 +18,11 @@ public class TaskList
     public TaskList(String fileName) throws FileNotFoundException
     {
         taskArr = new ArrayList<>();
-        try
-        {
-            loadListFromFile(fileName);
-        }
-        catch (FileNotFoundException ex)
-        {
-            throw new FileNotFoundException();
-        }
-        //Load from file
 
+        loadListFromFile(fileName);
     }
 
-    //Add TaskItem(...)
-    //ArrayList.add(new TaskItem)
+
     public void addTaskItem(String title, String date, String desc) throws IllegalArgumentException
     {
         TaskItem task = new TaskItem(title, date, desc);
@@ -40,8 +30,17 @@ public class TaskList
         taskArr.add(task);
     }
 
-    //Edit item(index, ...)
-        //ArrayList.set(index, new TaskItem)
+    public TaskItem getTaskItem(int index)
+    {
+        return taskArr.get(index);
+    }
+
+    public int getSize()
+    {
+        return taskArr.size();
+    }
+
+
     public void editTaskItem(int index, String title, String date, String desc) throws IllegalArgumentException
     {
         TaskItem newTask = new TaskItem(title, date, desc);
@@ -49,15 +48,13 @@ public class TaskList
         taskArr.set(index, newTask);
     }
 
-    //Remove(index)
-        //ArrayList.remove(index)
+
     public void removeTaskItem(int index)
     {
         taskArr.remove(index);
     }
 
-    //Mark/un-mark (index)
-        //ArrayList.set(index, Arr.get(index).mark())
+
     public void markTaskCompleted(int index)
     {
         TaskItem tempTask = taskArr.get(index);
@@ -89,12 +86,6 @@ public class TaskList
         output.close();
     }
 
-    //Load from file
-        //Find/load file
-            //Exceptions
-            //FNF-return false -> tell to re-prompt
-        //Scan in each line and decode into values
-        //ArrayList.add(title,date,desc)
     public void loadListFromFile(String fileName) throws FileNotFoundException
     {
         Scanner scan = new Scanner(new File(fileName));
@@ -117,16 +108,15 @@ public class TaskList
 
     }
 
-    public void printTaskList()
+    public void display()
     {
-        System.out.println(taskArr.get(0));
+        System.out.println("Current Tasks\n" +
+                "-------------\n");
+        for(int i=0; i<taskArr.size(); i++)
+        {
+            System.out.println(i+1+")"+taskArr.get(i));
+        }
     }
-    //Display TaskList items
-    /**
-        Current Tasks
-        -------------
-        ...
-     */
 
 
 }
