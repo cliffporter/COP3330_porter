@@ -4,7 +4,6 @@ public class TaskItem
     private String dueDate;         //date format: YYYY/MM/DD
     private String description;
     private boolean isCompleted;
-    //taskString
 
 
     public TaskItem(String title, String date, String desc) throws IllegalArgumentException
@@ -42,8 +41,7 @@ public class TaskItem
         if(day<0||day>31)
             return false;
 
-        //TODO month date validation
-        //<Bonus feature> 28/29-[2] 30-[4,6  9,11] 31-[1,3,5,7  8,10,12]
+
         if((month==4||month==6||month==9||month==11)&&day>30)
             return false;
         else if(month==2&&((year%4==0&&day>29)||(day>28&&year%4!=0)))
@@ -55,15 +53,9 @@ public class TaskItem
     {
         return taskTitle;
     }
-    public boolean editTitle(String taskTitle)
+    public void editTitle(String taskTitle)
     {
-        if(titleIsValid(taskTitle))
-        {
             this.taskTitle = taskTitle;
-            return true;
-        }
-        else
-            return false;
     }
 
     public String getDueDate()
