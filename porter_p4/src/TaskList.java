@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Formatter;
+import java.util.Scanner;
 
 public class TaskList
 {
@@ -34,14 +35,9 @@ public class TaskList
     //ArrayList.add(new TaskItem)
     public void addTaskItem(String title, String date, String desc) throws IllegalArgumentException
     {
-        try
-        {
-            TaskItem task = new TaskItem(title, date, desc);
-        }
-        catch (IllegalArgumentException e)
-        {
-            throw e;
-        }
+        TaskItem task = new TaskItem(title, date, desc);
+
+        taskArr.add(task);
     }
 
     //Edit item(index, ...)
@@ -84,8 +80,13 @@ public class TaskList
         //Completed    [X][2020/11/6][Name][Desc]
     public void saveListToFile(String fileName) throws FileNotFoundException
     {
-        Formatter fort = new Formatter(new File(fileName));
+        Formatter output = new Formatter(new File(fileName));
 
+        for(TaskItem t: taskArr)
+        {
+            output.format("%s\n", t.toString());
+        }
+        output.close();
     }
 
     //Load from file
@@ -96,10 +97,30 @@ public class TaskList
         //ArrayList.add(title,date,desc)
     public void loadListFromFile(String fileName) throws FileNotFoundException
     {
-        Formatter fort = new Formatter(new File(fileName));
+        Scanner scan = new Scanner(new File(fileName));
+
+        while(scan.hasNextLine())
+        {
+            //[✓] [2020/11/6] Task: desc
+            //    [2020/11/6] Task: desc
+            String line = scan.nextLine();
+
+            String title = line.substring(16, line.indexOf(':'));
+            String date = line.substring(5,15);
+            String desc = line.substring(line.indexOf(':')+1);
+
+            addTaskItem(title, date, desc);
+
+            if(line.charAt(0)=='[')
+                markTaskCompleted(taskArr.size()-1);
+        }
 
     }
 
+    public void printTaskList()
+    {
+        System.out.println(taskArr.get(0));
+    }
     //Display TaskList items
     /**
         Current Tasks
