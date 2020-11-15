@@ -10,9 +10,9 @@ public class TaskItem
     public TaskItem(String title, String date, String desc) throws IllegalArgumentException
     {
         if(!titleIsValid(title))
-            throw new IllegalArgumentException("Title is invalid");
+            throw new InvalidTitleException("Title is invalid");
         if(!dateIsValid(date))
-            throw new IllegalArgumentException("Date is invalid");
+            throw new InvalidDateException("Date is invalid");
 
         this.taskTitle=title;
         this.description=desc;
@@ -27,28 +27,35 @@ public class TaskItem
     }
     private boolean dateIsValid(String strD)
     {
-        int year = Integer.parseInt(strD.substring(0,4));
-        int month = Integer.parseInt(strD.substring(5,6));
-        int day = Integer.parseInt(strD.substring(8,9));
+        if(strD==null||strD.length()!=10)
+            return false;
 
-        //Basic crap
+        // 2001/06/15
+        int year = Integer.parseInt(strD.substring(0,4));
+        int month = Integer.parseInt(strD.substring(5,7));
+        int day = Integer.parseInt(strD.substring(8));
+
         if(year<1971)
             return false;
-        if(month>12||month<0)
+        if(month>12||month<1)
             return false;
         if(day<0||day>31)
             return false;
 
         //TODO month date validation
-
+        //<Bonus feature> 28/29-[2] 30-[4,6  9,11] 31-[1,3,5,7  8,10,12]
+        if((month==4||month==6||month==9||month==11)&&day>30)
+            return false;
+        else if(month==2&&((year%4==0&&day>29)||(day>28&&year%4!=0)))
+            return false;
         return true;
     }
 
-    public String getTaskTitle()
+    public String getTitle()
     {
         return taskTitle;
     }
-    public boolean setTaskTitle(String taskTitle)
+    public boolean editTitle(String taskTitle)
     {
         if(titleIsValid(taskTitle))
         {
@@ -63,22 +70,22 @@ public class TaskItem
     {
         return dueDate;
     }
-    public boolean setDueDate(String dueDate)
+
+    public void editDueDate(String dueDate)
     {
         if(dateIsValid(dueDate))
         {
             this.dueDate = dueDate;
-            return true;
         }
         else
-            return false;
+            throw new InvalidDateException("Date is Invalid");
     }
 
     public String getDescription()
     {
         return description;
     }
-    public void setDescription(String description)
+    public void editDescription(String description)
     {
         this.description = description;
     }
@@ -117,4 +124,16 @@ public class TaskItem
         //[✓] [2020/11/6] Pseudocode: Analyze PA 4 and write out pseudocode
         //    [2020/11/6] Pseudocode: Analyze PA 4 and write out pseudocode
 
+}
+
+class InvalidTitleException extends IllegalArgumentException {
+    public InvalidTitleException(String msg) {
+        super(msg);
+    }
+}
+
+class InvalidDateException extends IllegalArgumentException {
+    public InvalidDateException(String msg) {
+        super(msg);
+    }
 }

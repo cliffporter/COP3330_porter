@@ -1,4 +1,7 @@
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Formatter;
 
 public class TaskList
 {
@@ -8,12 +11,21 @@ public class TaskList
 
     public TaskList()
     {
+
         taskArr = new ArrayList<>();
     }
 
-    public TaskList(String fileName)
+    public TaskList(String fileName) throws FileNotFoundException
     {
         taskArr = new ArrayList<>();
+        try
+        {
+            loadListFromFile(fileName);
+        }
+        catch (FileNotFoundException ex)
+        {
+            throw new FileNotFoundException();
+        }
         //Load from file
 
     }
@@ -70,6 +82,11 @@ public class TaskList
         //Loop and save using format
         //In-completed [O][2020/11/6][Name][Desc]
         //Completed    [X][2020/11/6][Name][Desc]
+    public void saveListToFile(String fileName) throws FileNotFoundException
+    {
+        Formatter fort = new Formatter(new File(fileName));
+
+    }
 
     //Load from file
         //Find/load file
@@ -77,6 +94,11 @@ public class TaskList
             //FNF-return false -> tell to re-prompt
         //Scan in each line and decode into values
         //ArrayList.add(title,date,desc)
+    public void loadListFromFile(String fileName) throws FileNotFoundException
+    {
+        Formatter fort = new Formatter(new File(fileName));
+
+    }
 
     //Display TaskList items
     /**
