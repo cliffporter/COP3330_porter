@@ -107,8 +107,8 @@ public class App {
                 case 8:
                 {
                     //Exit
-                    String asnwer = promptUserForString("Are you sure? Un-saved tasks will be lost [Y/N]").toLowerCase();
-                    if(asnwer.charAt(0)=='y')
+                    String answer = promptUserForString("Are you sure? Un-saved tasks will be lost [Y/N]").toLowerCase();
+                    if(answer.charAt(0)=='y')
                         exit=true;
 
                     break;
