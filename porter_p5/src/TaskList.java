@@ -35,6 +35,25 @@ public class TaskList
     {
         return taskArr.get(index);
     }
+    public String getTaskDescription(int index) {return taskArr.get(index).getDescription();}
+    public String getTaskTitle(int index) {return taskArr.get(index).getTitle();}
+    public String getTaskDueDate(int index) {return taskArr.get(index).getDueDate();}
+
+    public void editTaskTitle(int index, String title)
+    {
+        TaskItem tsk = taskArr.get(index);
+        editTaskItem(index, title, tsk.getDueDate(), tsk.getDescription());
+    }
+    public void editTaskDueDate(int index, String date)
+    {
+        TaskItem tsk = taskArr.get(index);
+        editTaskItem(index, tsk.getTitle(), date, tsk.getDescription());
+    }
+    public void editTaskDescription(int index, String description)
+    {
+        TaskItem tsk = taskArr.get(index);
+        editTaskItem(index, tsk.getTitle(), tsk.getDueDate(), description);
+    }
 
     //List methods
     public int size()
@@ -67,6 +86,10 @@ public class TaskList
         TaskItem tempTask = taskArr.get(index);
         tempTask.markUnCompleted();
         taskArr.set(index, tempTask);
+    }
+    public boolean isTaskCompleted(int index)
+    {
+        return taskArr.get(index).isCompleted();
     }
 
 
