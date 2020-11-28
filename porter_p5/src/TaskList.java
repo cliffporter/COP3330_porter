@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Formatter;
+
 import java.util.Scanner;
 
 public class TaskList
@@ -35,11 +36,11 @@ public class TaskList
         return taskArr.get(index);
     }
 
-    public int getSize()
+    //List methods
+    public int size()
     {
         return taskArr.size();
     }
-
 
     public void editTaskItem(int index, String title, String date, String desc) throws IllegalArgumentException
     {

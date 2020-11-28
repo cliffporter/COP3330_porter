@@ -5,7 +5,6 @@ public class TaskItem
     private String description;
     private boolean isCompleted;
 
-
     public TaskItem(String title, String date, String desc) throws IllegalArgumentException
     {
         if(!titleIsValid(title))
