@@ -76,7 +76,6 @@ public class ContactItemTest
     {
         ContactItem con = new ContactItem("na", "me", "e@ma.il", "123");
         assertEquals("na me" + " email: e@ma.il phone: 123",
-                con.toString().replace("\n", "").replace("\r","")
-        );
+                con.toString().replace("\n", "").replace("\r",""));
     }
 }

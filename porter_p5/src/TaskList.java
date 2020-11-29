@@ -7,8 +7,7 @@ import java.util.Scanner;
 
 public class TaskList
 {
-    private ArrayList<TaskItem> taskArr;
-
+    private final ArrayList<TaskItem> taskArr;
 
     public TaskList()
     {
@@ -31,13 +30,13 @@ public class TaskList
         taskArr.add(task);
     }
 
-    public TaskItem getTaskItem(int index)
-    {
-        return taskArr.get(index);
-    }
+    public TaskItem getTaskItem(int index) { return taskArr.get(index); }
     public String getTaskDescription(int index) {return taskArr.get(index).getDescription();}
     public String getTaskTitle(int index) {return taskArr.get(index).getTitle();}
     public String getTaskDueDate(int index) {return taskArr.get(index).getDueDate();}
+
+    public int size() { return taskArr.size(); }
+
 
     public void editTaskTitle(int index, String title)
     {
@@ -53,12 +52,6 @@ public class TaskList
     {
         TaskItem tsk = taskArr.get(index);
         editTaskItem(index, tsk.getTitle(), tsk.getDueDate(), description);
-    }
-
-    //List methods
-    public int size()
-    {
-        return taskArr.size();
     }
 
     public void editTaskItem(int index, String title, String date, String desc) throws IllegalArgumentException
@@ -87,18 +80,9 @@ public class TaskList
         tempTask.markUnCompleted();
         taskArr.set(index, tempTask);
     }
-    public boolean isTaskCompleted(int index)
-    {
-        return taskArr.get(index).isCompleted();
-    }
+    public boolean isTaskCompleted(int index) { return taskArr.get(index).isCompleted(); }
 
 
-
-
-    //Save to file(name)
-    //Loop and save using format
-    //In-completed [O][2020/11/6][Name][Desc]
-    //Completed    [X][2020/11/6][Name][Desc]
     public void saveListToFile(String fileName) throws FileNotFoundException
     {
         Formatter output = new Formatter(new File(fileName));

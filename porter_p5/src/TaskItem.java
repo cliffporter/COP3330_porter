@@ -1,7 +1,7 @@
 public class TaskItem
 {
     private String taskTitle;
-    private String dueDate;         //date format: YYYY/MM/DD
+    private String dueDate;         //date format: MM/DD/YYYY
     private String description;
     private boolean isCompleted;
 
@@ -19,10 +19,7 @@ public class TaskItem
     }
 
     //Input validation
-    private boolean titleIsValid(String strT)
-    {
-        return strT.length() >0;
-    }
+    private boolean titleIsValid(String strT) { return strT.length() >0; }
     private boolean dateIsValid(String strD)
     {
         if((strD==null||strD.length()!=10)||strD.indexOf('/')!=2)
@@ -48,10 +45,7 @@ public class TaskItem
         return true;
     }
 
-    public String getTitle()
-    {
-        return taskTitle;
-    }
+    public String getTitle() { return taskTitle; }
     public void editTitle(String taskTitle)
     {
         if(taskTitle.length()>0)
@@ -60,10 +54,7 @@ public class TaskItem
             throw new InvalidTitleException("Title length must be greater than 0");
     }
 
-    public String getDueDate()
-    {
-        return dueDate;
-    }
+    public String getDueDate() { return dueDate; }
 
     public void editDueDate(String dueDate)
     {
@@ -75,27 +66,12 @@ public class TaskItem
             throw new InvalidDateException("Date is Invalid");
     }
 
-    public String getDescription()
-    {
-        return description;
-    }
-    public void editDescription(String description)
-    {
-        this.description = description;
-    }
+    public String getDescription() { return description; }
+    public void editDescription(String description) { this.description = description; }
 
-    public boolean isCompleted()
-    {
-        return isCompleted;
-    }
-    public void markCompleted()
-    {
-        isCompleted = true;
-    }
-    public void markUnCompleted()
-    {
-        isCompleted = false;
-    }
+    public boolean isCompleted() { return isCompleted; }
+    public void markCompleted() { isCompleted = true; }
+    public void markUnCompleted() { isCompleted = false; }
 
 
     @Override
@@ -111,15 +87,9 @@ public class TaskItem
         }
     }
 
-
-    //Output/Display
-    //ToString
-    //<completed mark> [Date] Name: desc
-    //[✓] [2020/11/6] Pseudocode: Analyze PA 4 and write out pseudocode
-    //    [2020/11/6] Pseudocode: Analyze PA 4 and write out pseudocode
-
 }
 
+//Custom Exceptions
 class InvalidTitleException extends IllegalArgumentException {
     public InvalidTitleException(String msg) {
         super(msg);

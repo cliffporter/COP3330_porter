@@ -7,6 +7,8 @@ public class App
 
 	public static void main(String[] args)
 	{
+		ContactItem cont = new ContactItem("first", "last", "e@ma.il", "123");
+		System.out.print(cont);
 		//Program Menu
 	}
 
