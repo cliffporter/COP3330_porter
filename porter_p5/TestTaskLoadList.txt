@@ -1,3 +1,3 @@
-    [2020/12/31] ifOnly: done
-[✓] [1985/05/04] middle task: old
-    [2060/04/23] space: long
+    [12/31/2020] ifOnly: done
+[✓] [05/04/1985] middle task: old
+    [04/23/2060] space: long

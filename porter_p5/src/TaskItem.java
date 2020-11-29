@@ -25,13 +25,13 @@ public class TaskItem
     }
     private boolean dateIsValid(String strD)
     {
-        if(strD==null||strD.length()!=10)
+        if((strD==null||strD.length()!=10)||strD.indexOf('/')!=2)
             return false;
 
-        // 2001/06/15
-        int year = Integer.parseInt(strD.substring(0,4));
-        int month = Integer.parseInt(strD.substring(5,7));
-        int day = Integer.parseInt(strD.substring(8));
+        // 06/15/2006
+        int month = Integer.parseInt(strD.substring(0,2));
+        int day = Integer.parseInt(strD.substring(3,5));
+        int year = Integer.parseInt(strD.substring(6));
 
         if(year<1971)
             return false;
@@ -54,7 +54,10 @@ public class TaskItem
     }
     public void editTitle(String taskTitle)
     {
-        this.taskTitle = taskTitle;
+        if(taskTitle.length()>0)
+            this.taskTitle = taskTitle;
+        else
+            throw new InvalidTitleException("Title length must be greater than 0");
     }
 
     public String getDueDate()

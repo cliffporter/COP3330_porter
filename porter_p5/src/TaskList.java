@@ -116,13 +116,13 @@ public class TaskList
 
         while(scan.hasNextLine())
         {
-            //[✓] [2020/11/6] Task: desc
-            //    [2020/11/6] Task: desc
+            //[✓] [2020/11/06] Task: desc
+            //    [2020/11/06] Task: desc
             String line = scan.nextLine();
 
-            String title = line.substring(16, line.indexOf(':'));
+            String title = line.substring(17, line.indexOf(':'));
             String date = line.substring(5,15);
-            String desc = line.substring(line.indexOf(':')+1);
+            String desc = line.substring(line.indexOf(':')+2);
 
             addTaskItem(title, date, desc);
 

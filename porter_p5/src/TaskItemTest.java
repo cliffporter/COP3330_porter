@@ -14,7 +14,7 @@ public class TaskItemTest
 	@Test
 	public void constructorFailsWithInvalidTitle()
 	{
-		assertThrows(InvalidNameException.class, () -> new TaskItem("", "12/12/2016", ""));
+		assertThrows(InvalidTitleException.class, () -> new TaskItem("", "12/12/2016", ""));
 	}
 	@Test
 	public void constructorSucceedsWithValidDueDate()
@@ -56,13 +56,13 @@ public class TaskItemTest
 	public void editingTitleFailsWithEmptyString()
 	{
 		TaskItem tsk = new TaskItem("a", "12/12/2016", "");
-		assertThrows(InvalidNameException.class, () ->tsk.editTitle(""));
+		assertThrows(InvalidTitleException.class, () -> tsk.editTitle(""));
 	}
 	@Test
 	public void editingTitleSucceedsWithExpectedValue()
 	{
 		TaskItem tsk = new TaskItem("a", "12/12/2016", "");
-		tsk.editDueDate("newTitle 2");
+		tsk.editTitle("newTitle 2");
 		assertEquals("newTitle 2", tsk.getTitle());
 	}
 	@Test

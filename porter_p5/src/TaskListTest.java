@@ -4,6 +4,10 @@ import java.io.FileNotFoundException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.ByteArrayOutputStream;
+import java.io.OutputStream;
+import java.io.PrintStream;
+
 
 public class TaskListTest
 {
@@ -29,21 +33,21 @@ public class TaskListTest
     {
         TaskList tskL = new TaskList();
         tskL.addTaskItem("a","12/12/2016", "");
-        assertThrows(ArrayIndexOutOfBoundsException.class, () -> tskL.isTaskCompleted(0));
+        assertThrows(IndexOutOfBoundsException.class, () -> tskL.markTaskCompleted(1));
     }
     @Test
     public void editingItemDescriptionFailsWithInvalidIndex()
     {
         TaskList tskL = new TaskList();
         tskL.addTaskItem("a", "12/12/2016", "");
-        assertThrows(ArrayIndexOutOfBoundsException.class, () -> tskL.editTaskItem(1, "a", "12/12/2016", "newD"));
+        assertThrows(IndexOutOfBoundsException.class, () -> tskL.editTaskItem(1, "a", "12/12/2016", "newD"));
     }
     @Test
     public void editingItemDescriptionSucceedsWithExpectedValue()
     {
         TaskList tskL = new TaskList();
         tskL.addTaskItem("a", "12/12/2016", "");
-        assertThrows(ArrayIndexOutOfBoundsException.class, () -> tskL.editTaskDescription(1, "newD"));
+        assertThrows(IndexOutOfBoundsException.class, () -> tskL.editTaskDescription(1, "newD"));
     }
     @Test
     public void editingItemDueDateSucceedsWithExpectedValue()
@@ -65,7 +69,7 @@ public class TaskListTest
     {
         TaskList tskL = new TaskList();
         tskL.addTaskItem("a", "12/12/2016", "");
-        assertThrows(ArrayIndexOutOfBoundsException.class, () -> tskL.editTaskTitle(1,"b"));
+        assertThrows(IndexOutOfBoundsException.class, () -> tskL.editTaskTitle(1,"b"));
     }
     @Test
     public void editingItemTitleSucceedsWithExpectedValue()
@@ -87,7 +91,7 @@ public class TaskListTest
     {
         TaskList tskL = new TaskList();
         tskL.addTaskItem("a", "12/12/2016", "");
-        assertThrows(ArrayIndexOutOfBoundsException.class, () -> tskL.editTaskDueDate(1, "12/12/2016"));
+        assertThrows(IndexOutOfBoundsException.class, () -> tskL.editTaskDueDate(1, "12/12/2016"));
     }
     @Test
     public void editingTaskItemDueDateFailsWithInvalidYYYMMDD()
@@ -101,7 +105,7 @@ public class TaskListTest
     {
         TaskList tskL = new TaskList();
         tskL.addTaskItem("a", "12/12/2016", "");
-        assertThrows(ArrayIndexOutOfBoundsException.class, () -> tskL.getTaskDescription(1));
+        assertThrows(IndexOutOfBoundsException.class, () -> tskL.getTaskDescription(1));
     }
     @Test
     public void gettingItemDescriptionSucceedsWithValidIndex()
@@ -115,7 +119,7 @@ public class TaskListTest
     {
         TaskList tskL = new TaskList();
         tskL.addTaskItem("a", "12/12/2016", "");
-        assertThrows(ArrayIndexOutOfBoundsException.class, () -> tskL.getTaskDescription(1));
+        assertThrows(IndexOutOfBoundsException.class, () -> tskL.getTaskDescription(1));
     }
     @Test
     public void gettingItemDueDateSucceedsWithValidIndex()
@@ -129,7 +133,7 @@ public class TaskListTest
     {
         TaskList tskL = new TaskList();
         tskL.addTaskItem("a", "12/12/2016", "");
-        assertThrows(ArrayIndexOutOfBoundsException.class, () -> tskL.getTaskTitle(1));
+        assertThrows(IndexOutOfBoundsException.class, () -> tskL.getTaskTitle(1));
     }
     @Test
     public void gettingItemTitleSucceedsWithValidIndex()
@@ -158,19 +162,25 @@ public class TaskListTest
     {
         TaskList tskL = new TaskList();
         tskL.addTaskItem("a", "12/12/2016", "");
-        assertThrows(ArrayIndexOutOfBoundsException.class, () -> tskL.removeTaskItem(1));
+        assertThrows(IndexOutOfBoundsException.class, () -> tskL.removeTaskItem(1));
     }
     @Test
     public void savedTaskListCanBeLoaded()
     {
+        OutputStream os = new ByteArrayOutputStream();
+        PrintStream ps = new PrintStream(os);
+        System.setOut(ps);
+
         try
         {
             TaskList tskL = new TaskList("TestTaskLoadList.txt");
+            tskL.display();
+
             assertEquals("Current Tasks-------------"
-                            + "1)    [2020/12/31] ifOnly: done"
-                            + "2)[✓] [1985/05/04] middle task: old"
-                            + "3)    [2060/04/23] space: long"
-                    , tskL.toString().replaceAll("\n", "").replaceAll("\r", ""));
+                            + "1)    [12/31/2020] ifOnly: done"
+                            + "2)[✓] [05/04/1985] middle task: old"
+                            + "3)    [04/23/2060] space: long"
+                    , os.toString().replaceAll("\n", "").replaceAll("\r", ""));
         }
         catch (FileNotFoundException ex)
         {
@@ -193,6 +203,6 @@ public class TaskListTest
         TaskList tskL = new TaskList();
         tskL.addTaskItem("a", "12/12/2016", "");
         tskL.markTaskCompleted(0);
-        assertThrows(ArrayIndexOutOfBoundsException.class, () -> tskL.unMarkTaskCompleted(1));
+        assertThrows(IndexOutOfBoundsException.class, () -> tskL.unMarkTaskCompleted(1));
     }
 }
